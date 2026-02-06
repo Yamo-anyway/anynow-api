@@ -25,6 +25,7 @@ export default {
 			return Response.json({
 				ok: true,
 				service: 'anynow-api',
+				version: 'v1',
 				ts: new Date().toISOString(),
 			});
 		}
