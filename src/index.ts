@@ -16,9 +16,14 @@
 // 		return new Response('Hello World!');
 // 	},
 // } satisfies ExportedHandler<Env>;
+import type { D1Database } from '@cloudflare/workers-types';
+
+export interface Env {
+	BOWLING: D1Database;
+}
 
 export default {
-	async fetch(request: Request): Promise<Response> {
+	async fetch(request: Request, env: Env): Promise<Response> {
 		const url = new URL(request.url);
 
 		if (url.pathname === '/health') {
@@ -28,6 +33,11 @@ export default {
 				version: 'v1',
 				ts: new Date().toISOString(),
 			});
+		}
+
+		if (url.pathname === '/db-check') {
+			const row = await env.BOWLING.prepare("SELECT 1 AS one, datetime('now') AS now").first();
+			return Response.json({ ok: true, row });
 		}
 
 		return new Response('Not Found', { status: 404 });

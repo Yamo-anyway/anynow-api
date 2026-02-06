@@ -8,11 +8,17 @@
 	"main": "src/index.ts",
 	"compatibility_date": "2026-02-05",
 	"observability": {
-		"enabled": true
+		"enabled": true,
 	},
-	"compatibility_flags": [
-		"nodejs_compat"
-	]
+	"compatibility_flags": ["nodejs_compat"],
+	"d1_databases": [
+		{
+			"binding": "BOWLING",
+			"database_name": "bowling",
+			"database_id": "1325f135-66e7-4421-bce6-2386e810a1ca",
+		},
+	],
+
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
